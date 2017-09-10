@@ -43,6 +43,8 @@ class Crawler(object):
     
   def get_num_share(self, key):
     self.set_infos()
+    
+    day_st = re.compile('stats-sub-header\">([^<까]*)')
     share_count_st = re.compile('<span class=\"metric-label\">공유<\/span>\n*\s*<div class=\"bragbar-metric\">(.*)<\/div>')
     view_time_st = re.compile('<span class=\"metric-label\">시청 시간<\/span>\n*\s*<div class=\"bragbar-metric\">(.*)<\/div>')
     ave_view_time_st = re.compile('<span class=\"metric-label\">평균 시청 지속시간<\/span>\n*\s*<span class=\"menu-metric-value\">([^<]*)')
@@ -54,11 +56,12 @@ class Crawler(object):
     request = Request(url, data, headers=headers)
     txt = urlopen(request).read()
     
+    day = day_st.findall(txt)[0].replace(',', '')
     share_count = share_count_st.findall(txt)[0].replace(',', '')
     view_time = self.cleanhtml(view_time_st.findall(txt)[0].replace(',', ''))
     ave_view_time = ave_view_time_st.findall(txt)[0].replace(',', '')
 
-    return share_count, view_time, ave_view_time
+    return day, share_count, view_time, ave_view_time
     
   
   def get_infos(self, key):

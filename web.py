@@ -15,7 +15,7 @@ def get_info():
   from crawler import Crawler
   c = Crawler()
   data = c.get_infos(request.form['youtube_id'])
-  data[u'shaerCount'], data[u'viewTime'], data[u'aveViewTime'] = c.get_num_share(request.form['youtube_id'])
+  data[u'day'], data[u'shaerCount'], data[u'viewTime'], data[u'aveViewTime'] = c.get_num_share(request.form['youtube_id'])
   
   data[u'viewTime'] = data[u'viewTime'].decode("utf-8")
 

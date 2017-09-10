@@ -8,22 +8,22 @@
         <span>dislikeCount</span>
       </th>
       <th>
-        <span>shaerCount</span>
-      </th>
-      <th>
         <span>commentCount</span>
       </th>
       <th>
         <span>viewCount</span>
       </th>
       <th>
-        <span>viewTime</span>
-      </th>
-      <th>
-        <span>aveViewTime</span>
-      </th>
-      <th>
         <span>favoriteCount</span>
+      </th>
+      <th>
+        <span>shaerCount {{ data['day'] }}까지</span>
+      </th>
+      <th>
+        <span>viewTime {{ data['day'] }}까지</span>
+      </th>
+      <th>
+        <span>aveViewTime {{ data['day'] }}까지</span>
       </th>
     </tr>
   </thead>
@@ -35,10 +35,6 @@
       <td>
         <span>{{ data['dislikeCount'] }}</span>
       </td>
-
-      <td>
-        <span>{{ data['shaerCount'] }}</span>
-      </td>
       <td>
         <span>{{ data['commentCount'] }}</span>
       </td>
@@ -46,13 +42,16 @@
         <span>{{ data['viewCount'] }}</span>
       </td>
       <td>
+        <span>{{ data['favoriteCount'] }}</span>
+      </td>
+      <td>
+        <span>{{ data['shaerCount'] }}</span>
+      </td>
+      <td>
         <span>{{ data['viewTime'] }}</span>
       </td>
       <td>
         <span>{{ data['aveViewTime'] }}</span>
-      </td>
-      <td>
-        <span>{{ data['favoriteCount'] }}</span>
       </td>
     </tr>
   </tbody>
