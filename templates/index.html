@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flask</title>    
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      $('#get_info').on('submit', function(event){
+        event.preventDefault();
+        var formdata = new FormData(this);
+        var request = $.ajax({
+          url: "/getInfo",
+          method: "POST",
+          data: formdata,
+          contentType: false,
+          processData: false,
+          dataType: "html"
+        });
+
+        request.done(function(result) {
+          $("#result").html(result);
+        });
+
+        request.fail(function( jqXHR, textStatus ) {
+          alert( "Request failed: " + textStatus );
+        });
+      });
+    });
+  </script>
+
+  <style type="text/css">
+    table {
+      border-collapse:collapse; 
+      text-align: center;
+    }
+    th, td { 
+      border:1px solid black; 
+    }
+  </style>
+</head>
+<body>
+  <header>
+  </header>
+
+  <div class="container">
+    <form id="get_info" action="/getInfo" method="POST">
+      <input type="text" name="youtube_id" placeholder="vedio id" value="ZU1dyFa9-tM">
+      <button type="submit">정보가져오기</button>
+    </form>
+    <div id="result">
+
+    </div>
+  </div>
+</body>
+</html>
