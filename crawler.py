@@ -56,6 +56,9 @@ class Crawler(object):
     request = Request(url, data, headers=headers)
     txt = urlopen(request).read()
     
+    if "통계 공개가 사용 중지되었습니다." in txt: 
+        return '', '', '', ''
+
     day = day_st.findall(txt)[0].replace(',', '')
     share_count = share_count_st.findall(txt)[0].replace(',', '')
     view_time = self.cleanhtml(view_time_st.findall(txt)[0].replace(',', ''))
