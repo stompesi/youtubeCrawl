@@ -56,15 +56,18 @@ class Crawler(object):
     request = Request(url, data, headers=headers)
     txt = urlopen(request).read()
     
+    if "아직 통계가 없습니다." in txt: 
+        return '', '', '', '', 'No statistics yet.'
+
     if "통계 공개가 사용 중지되었습니다." in txt: 
-        return '', '', '', ''
+        return '', '', '', '', 'Statistical publishing is disabled.'
 
     day = day_st.findall(txt)[0].replace(',', '')
     share_count = share_count_st.findall(txt)[0].replace(',', '')
     view_time = self.cleanhtml(view_time_st.findall(txt)[0].replace(',', ''))
     ave_view_time = ave_view_time_st.findall(txt)[0].replace(',', '')
 
-    return day, share_count, view_time, ave_view_time
+    return day, share_count, view_time, ave_view_time, ''
     
   
   def get_infos(self, key):
